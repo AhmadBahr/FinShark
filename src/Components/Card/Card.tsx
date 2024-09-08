@@ -1,5 +1,10 @@
 import './Card.css'
-type Props = {}
+
+interface Props {
+    companyNamr: string;
+    ticker: string;
+    price: number;
+}
 
 const Card = (props: Props) => {
     return <div className='card'>
