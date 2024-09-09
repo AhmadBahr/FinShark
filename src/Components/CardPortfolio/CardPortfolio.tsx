@@ -1,13 +1,14 @@
 import React from 'react'
 
 interface Props {
-    portfolioValues: string[];
+    portfolioValue: string;
 }
 
-const CardPortfolio = (props: Props) => {
+const CardPortfolio = ({ portfolioValue }: Props) => {
     return (
         <>
-        <h3>My Portfolio</h3>
+            <h4>{portfolioValue}</h4>
+            <button>X</button>
         </>
     )
 }
