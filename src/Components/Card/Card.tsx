@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react';
 import { CompanySearch } from '../../company';
-import AddPorfolio from '../Portfolio/AddPortfolio/AddPorfolio';
+import AddPorfolio from '../Add Portflio/AddPorfolio';
 import './Card.css'
 
 interface Props {

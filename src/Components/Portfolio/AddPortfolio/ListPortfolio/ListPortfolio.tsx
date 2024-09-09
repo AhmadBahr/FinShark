@@ -6,14 +6,14 @@ interface Props {
     onPortfolioDelete: (e: SyntheticEvent) => void
 }
 
-const ListPortfolio = ({ portfolioValues , onPortfolioDelete }: Props) => {
+const ListPortfolio = ({ portfolioValues, onPortfolioDelete }: Props) => {
     return (
         <>
             <h3>My Portfiolio</h3>
             <ul>
                 {portfolioValues &&
-                    portfolioValues.map((portfolioValues) => {
-                        return <CardPortfolio portfolioValue={portfolioValues} onPortfolioDelete={onPortfolioDelete} />
+                    portfolioValues.map((portfolioValue) => {
+                        return <CardPortfolio portfolioValue={portfolioValue} onPortfolioDelete={onPortfolioDelete} />
                     })
                 }
             </ul>
