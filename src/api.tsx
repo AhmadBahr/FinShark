@@ -13,10 +13,10 @@ export const searchCompanies = async (query: string): Promise<CompanySearch[] | 
         return response.data.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            console.log('error message: ', error.message);
+            console.log('error message: ', error.message); 
         } else {
             console.log('unexpected error: ', error);
         }
-        return undefined; 
+        return undefined;
     }
 };

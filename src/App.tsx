@@ -18,7 +18,6 @@ function App() {
   const onClick = async (e: SyntheticEvent) => {
     e.preventDefault();
     const result = await searchCompanies(search);
-
     if (typeof result === 'string') {
       setServerError(result);
       setSearchResult([]);
@@ -27,12 +26,11 @@ function App() {
       setServerError("");
     }
 
-    console.log('Search results:', searchResult);
+    console.log('Search results:', result);
   };
 
   return (
     <div className="App">
-      <CardList />
       <Search
         onClick={onClick}
         handleChange={handleChange}
@@ -40,6 +38,7 @@ function App() {
           throw new Error('Function not implemented.');
         }} />
       {serverError && <p style={{ color: 'red' }}>{serverError}</p>}
+      <CardList />
     </div>
   );
 }
