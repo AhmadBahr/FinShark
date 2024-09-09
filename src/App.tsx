@@ -12,7 +12,6 @@ function App() {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    console.log('Search term:', e.target.value);
   };
 
   const onClick = async (e: SyntheticEvent) => {
@@ -25,8 +24,6 @@ function App() {
       setSearchResult(result);
       setServerError("");
     }
-
-    console.log('Search results:', result);
   };
 
   return (
@@ -38,7 +35,7 @@ function App() {
           throw new Error('Function not implemented.');
         }} />
       {serverError && <p style={{ color: 'red' }}>{serverError}</p>}
-      <CardList />
+      <CardList searchResults={searchResult} />
     </div>
   );
 }

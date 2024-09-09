@@ -5,18 +5,25 @@ interface SearchResponse {
     data: CompanySearch[];
 }
 
-export const searchCompanies = async (query: string): Promise<CompanySearch[] | undefined> => {
+export const searchCompanies = async (query: string): Promise<CompanySearch[] | string> => {
     try {
         const response = await axios.get<SearchResponse>(
             `https://financialmodelingprep.com/api/v3/search?query=${query}&limit=10&exchange=NASDAQ&apikey=${process.env.REACT_APP_API_KEY}`
         );
-        return response.data.data;
+
+        if (response.data && Array.isArray(response.data)) {
+            return response.data;
+        } else {
+            return "No results found";
+        }
+
     } catch (error) {
         if (axios.isAxiosError(error)) {
             console.log('error message: ', error.message); 
+            return `Error: ${error.message}`;
         } else {
             console.log('unexpected error: ', error);
+            return "An unexpected error occurred";
         }
-        return undefined;
     }
 };
