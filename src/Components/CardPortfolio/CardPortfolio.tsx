@@ -1,5 +1,5 @@
 import React, { SyntheticEvent } from 'react'
-import DeletePortfolio from '../DeletePortfolio/DeletePortfolio';
+import DeletePortfolio from '../DeletePortfolio/DeletePortfolio.tsx';
 
 interface Props {
     portfolioValue: string;
