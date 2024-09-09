@@ -5,6 +5,7 @@ import Search from './Components/Search/Search';
 import { CompanySearch } from './company';
 import { searchCompanies } from './api';
 
+
 function App() {
   const [search, setSearch] = useState<string>("");
   const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
@@ -13,6 +14,10 @@ function App() {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
+  const onPortfolioCreate = (e: SyntheticEvent) => {
+    e.preventDefault();
+    console.log(e);
+  }
 
   const onClick = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -30,12 +35,12 @@ function App() {
     <div className="App">
       <Search
         onClick={onClick}
-        handleChange={handleChange}
-        search={search} onSearch={function (search: string): void {
+        handleChange={handleChange} onSearch={function (search: string): void {
           throw new Error('Function not implemented.');
-        }} />
-      {serverError && <p style={{ color: 'red' }}>{serverError}</p>}
-      <CardList searchResults={searchResult} />
+        }} search={''}
+      />
+      <CardList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate} />
+      {serverError && <div>Unable to connect to API</div>}
     </div>
   );
 }
