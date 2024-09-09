@@ -1,5 +1,6 @@
 import { SyntheticEvent } from 'react';
-import CardPortfolio from '../../../CardPortfolio/CardPortfolio';
+import CardPortfolio from '../../../CardPortfolio/CardPortfolio.tsx';
+import React from 'react';
 
 interface Props {
     portfolioValues: string[];

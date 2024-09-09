@@ -1,7 +1,8 @@
 import { CompanySearch } from "../../company";
 import { v4 as uuidv4 } from "uuid";
-import Card from "../Card/Card";
+import Card from "../Card/Card.tsx";
 import { SyntheticEvent } from "react";
+import React from "react";
 
 interface Props {
     searchResults: CompanySearch[];
