@@ -5,6 +5,7 @@ import Search from './Components/Search/Search';
 import { CompanySearch } from './company';
 import { searchCompanies } from './api';
 import ListPortfolio from './Components/Portfolio/AddPortfolio/ListPortfolio/ListPortfolio';
+import React from 'react';
 
 
 function App() {
