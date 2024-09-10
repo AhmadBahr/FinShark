@@ -1,17 +1,13 @@
-import axios from "axios";
-import { CompanySearch } from "./company";
-
-interface SearchResponse {
-    data: CompanySearch[];
-}
+import axios from 'axios';
+import { CompanyProfile, CompanySearch } from './company';
 
 export const searchCompanies = async (query: string): Promise<CompanySearch[] | string> => {
     try {
-        const response = await axios.get<SearchResponse>(
+        const response = await axios.get<CompanySearch[]>(
             `https://financialmodelingprep.com/api/v3/search?query=${query}&limit=10&exchange=NASDAQ&apikey=${process.env.REACT_APP_API_KEY}`
         );
 
-        if (response.data && Array.isArray(response.data)) {
+        if (Array.isArray(response.data)) {
             return response.data;
         } else {
             return "No results found";
@@ -19,10 +15,32 @@ export const searchCompanies = async (query: string): Promise<CompanySearch[] | 
 
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            console.log('error message: ', error.message); 
+            console.error('Error message from API:', error.message);
             return `Error: ${error.message}`;
         } else {
-            console.log('unexpected error: ', error);
+            console.error('Unexpected error:', error);
+            return "An unexpected error occurred";
+        }
+    }
+};
+
+export const getCompanyProfile = async (symbol: string): Promise<CompanyProfile | string> => {
+    try {
+        const response = await axios.get<CompanyProfile>(
+            `https://financialmodelingprep.com/api/v3/profile/${symbol}?apikey=${process.env.REACT_APP_API_KEY}`
+        );
+
+        if (Array.isArray(response.data) && response.data.length > 0) {
+            return response.data[0]; 
+        } else {
+            return "No profile found";
+        }
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            console.error("Error fetching company profile:", error.message);
+            return `Error: ${error.message}`;
+        } else {
+            console.error("Unexpected error:", error);
             return "An unexpected error occurred";
         }
     }
