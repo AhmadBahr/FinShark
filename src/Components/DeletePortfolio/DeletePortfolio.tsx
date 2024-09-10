@@ -1,17 +1,23 @@
-import React, { SyntheticEvent } from 'react'
+import React, { SyntheticEvent } from 'react';
 
 type Props = {
-    onPortolioDelete: (e: SyntheticEvent) => void;
-    portfolioValue: string
+    onPortfolioDelete: (e: SyntheticEvent) => void;
+    portfolioValue: string;
 }
 
-const DeletePortfolio = ({ onPortolioDelete, portfolioValue }: Props) => {
+const DeletePortfolio: React.FC<Props> = ({ onPortfolioDelete, portfolioValue }) => {
     return (
-        <form onSubmit={onPortolioDelete}>
-            <input hidden={true} value={portfolioValue} />
-            <button>X</button>
+        <form onSubmit={onPortfolioDelete}>
+            <input type='hidden' value={portfolioValue} />
+            <button 
+                type='submit' 
+                className='p-2 bg-red-500 text-white rounded hover:bg-red-600'
+                aria-label={`Delete ${portfolioValue}`}
+            >
+                X
+            </button>
         </form>
-    )
+    );
 }
 
-export default DeletePortfolio
+export default DeletePortfolio;

@@ -3,16 +3,19 @@ import DeletePortfolio from '../DeletePortfolio/DeletePortfolio.tsx';
 
 interface Props {
     portfolioValue: string;
-    onPortfolioDelete: (e:SyntheticEvent) => void;
+    onPortfolioDelete: (e: SyntheticEvent) => void;
 }
 
-const CardPortfolio = ({ portfolioValue , onPortfolioDelete }: Props) => {
+const CardPortfolio: React.FC<Props> = ({ portfolioValue, onPortfolioDelete }) => {
     return (
-        <>
-            <h4>{portfolioValue}</h4>
-            <DeletePortfolio onPortolioDelete={onPortfolioDelete} portfolioValue={portfolioValue}/>
-        </>
-    )
+        <div className='p-4 border rounded-lg shadow-md'>
+            <h4 className='text-xl font-semibold mb-2'>{portfolioValue}</h4>
+            <DeletePortfolio 
+                onPortfolioDelete={onPortfolioDelete} 
+                portfolioValue={portfolioValue} 
+            />
+        </div>
+    );
 }
 
-export default CardPortfolio
+export default CardPortfolio;

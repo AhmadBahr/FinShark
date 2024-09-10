@@ -1,15 +1,23 @@
-import React, { SyntheticEvent } from 'react'
+import React, { SyntheticEvent } from 'react';
 
 type Props = {
-    symbol: string
-    onPortfolioCreate: (e: SyntheticEvent) => void
+    symbol: string;
+    onPortfolioCreate: (e: SyntheticEvent) => void;
 }
 
-const AddPorfolio = ({ onPortfolioCreate, symbol }: Props) => {
-    return <form onSubmit={onPortfolioCreate}>
-        <input readOnly={true} hidden={true} value={symbol}/>
-        <button type="submit">Add</button>
-    </form>
+const AddPortfolio: React.FC<Props> = ({ onPortfolioCreate, symbol }) => {
+    return (
+        <form onSubmit={onPortfolioCreate} className="flex items-center">
+            <input type='hidden' value={symbol} />
+            <button 
+                type="submit" 
+                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                aria-label={`Add ${symbol} to portfolio`}
+            >
+                Add
+            </button>
+        </form>
+    );
 }
 
-export default AddPorfolio
+export default AddPortfolio;

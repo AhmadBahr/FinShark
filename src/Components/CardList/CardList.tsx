@@ -6,22 +6,23 @@ import React from "react";
 
 interface Props {
     searchResults: CompanySearch[];
-    onPortfolioCreate: (e: SyntheticEvent) => void
+    onPortfolioCreate: (e: SyntheticEvent) => void;
 }
 
-const CardList: React.FC<Props> = ({ searchResults, onPortfolioCreate }): JSX.Element => {
+const CardList: React.FC<Props> = ({ searchResults, onPortfolioCreate }) => {
     return (
         <>
             {searchResults.length > 0 ? (
                 searchResults.map((result) => (
                     <Card
-                        id={result.symbol}
-                        key={uuidv4()}
+                        id={result.symbol} 
+                        key={result.symbol} 
                         searchResult={result}
-                        onPortfolioCreate={onPortfolioCreate} />
+                        onPortfolioCreate={onPortfolioCreate}
+                    />
                 ))
             ) : (
-                <p className="mb-3 mt-3 text-xl font-semibold text-cneter md:text-xl">
+                <p className="mb-3 mt-3 text-xl font-semibold text-center md:text-xl">
                     No results!
                 </p>
             )}
