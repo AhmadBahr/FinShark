@@ -9,17 +9,24 @@ interface Props {
 
 const ListPortfolio = ({ portfolioValues, onPortfolioDelete }: Props) => {
     return (
-        <>
-            <h3>My Portfiolio</h3>
-            <ul>
-                {portfolioValues &&
-                    portfolioValues.map((portfolioValue) => {
-                        return <CardPortfolio portfolioValue={portfolioValue} onPortfolioDelete={onPortfolioDelete} />
-                    })
-                }
-            </ul>
-        </>
-    )
-}
+        <div className="p-4 max-w-2xl mx-auto">
+            <h3 className="text-xl font-bold mb-4">My Portfolio</h3>
+            {portfolioValues.length === 0 ? (
+                <p className="text-gray-600">Your portfolio is empty.</p>
+            ) : (
+                <ul className="list-disc list-inside space-y-2">
+                    {portfolioValues.map((portfolioValue) => (
+                        <li key={portfolioValue}>
+                            <CardPortfolio
+                                portfolioValue={portfolioValue}
+                                onPortfolioDelete={onPortfolioDelete}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+};
 
-export default ListPortfolio
+export default ListPortfolio;
