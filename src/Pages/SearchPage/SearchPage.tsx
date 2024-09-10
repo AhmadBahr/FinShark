@@ -1,5 +1,4 @@
 import React, { useState, ChangeEvent, SyntheticEvent } from 'react';
-import Navbar from '../../Components/Navbar/Navbar.tsx';
 import Hero from '../../Components/Hero/Hero.tsx';
 import Search from '../../Components/Search/Search.tsx';
 import ListPortfolio from '../../Components/Portfolio/ListPortfolio/ListPortfolio/ListPortfolio.tsx';
@@ -54,7 +53,6 @@ const SearchPage: React.FC = () => {
 
     return (
         <div className="App">
-            <Navbar />
             <Hero />
             <Search
                 onSearchSubmit={onSearchSubmit}
