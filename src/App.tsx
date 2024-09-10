@@ -6,6 +6,8 @@ import { CompanySearch } from './company';
 import { searchCompanies } from './api.tsx';
 import ListPortfolio from './Components/Portfolio/AddPortfolio/ListPortfolio/ListPortfolio.tsx';
 import React from 'react';
+import Navbar from './Components/Navbar/Navbar.tsx';
+import Hero from './Components/Hero/Hero.tsx';
 
 
 function App() {
@@ -49,10 +51,12 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar/>
       <Search
         onSearchSubmit={onSearchSubmit}
         handleSearchChange={handleSearchChange} search={search}
       />
+      <Hero/>
       <ListPortfolio portfolioValues={portfoliovalues} onPortfolioDelete={onPortfolioDelete} />
       <CardList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate} />
       {serverError && <div>Unable to connect to API</div>}
