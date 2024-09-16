@@ -4,6 +4,8 @@ import App from "../App.tsx";
 import Home from "../Pages/Home/Home.tsx";
 import SearchPage from "../Pages/SearchPage/SearchPage.tsx";
 import Company from "../Pages/Company/Company.tsx";
+import CompanyProfile from "../Components/CompanyProfile/CompanyProfile.tsx";
+import IncomeStatement from "../Components/IncomeStatement/IncomeStatement.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -15,12 +17,16 @@ export const router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: "search", 
+                path: "search",
                 element: <SearchPage />,
             },
             {
                 path: "company/:ticker",
                 element: <Company />,
+                children: [
+                    { path: "company-profile", element: <CompanyProfile /> },
+                    { path: "income-statement", element: <IncomeStatement /> }
+                ]
             }
         ]
     }
