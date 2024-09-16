@@ -1,38 +1,42 @@
-import React from 'react';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { FaHome } from 'react-icons/fa'
 
-type Props = {};
+type Props = {}
 
-const Sidebar: React.FC<Props> = (props: Props) => {
+const Sidebar = (props: Props) => {
     return (
-        <nav className="block py-4 px-6 top-0 bottom-0 w-64 bg-white shadow-xl left-0 fixed flex flex-col transition-transform duration-300 ease-in-out transform md:translate-x-0 translate-x-0">
-            
-            {/* Toggle Button for Mobile */}
-            <button className="md:hidden flex items-center justify-center cursor-pointer text-blueGray-700 w-6 h-10 border border-solid border-blueGray-100 text-xl leading-none bg-white rounded-r absolute top-4 right-4 focus:outline-none z-50">
+        <nav className="block py-4 px-6 top-0 bottom-0 w-64 bg-white shadow-xl left-0 absolute flex-row flex-nowrap md:z-10 z-9999 transition-all duration-300 ease-in-out transform md:translate-x-0 -translate-x-full">
+
+            <button className="md:hidden flex items-center justify-center cursor-pointer text-blueGray-700 w-6 h-10 border-l-0 border-r border-t border-b border-solid border-blueGray-100 text-xl leading-none bg-white rounded-r border border-solid border-transparent absolute top-1/2 -right-24-px focus:outline-none z-9998">
+
                 <i className="fas fa-ellipsis-v"></i>
+
             </button>
 
-            {/* Sidebar Content */}
-            <div className="flex-col min-h-full px-0 flex flex-wrap items-center justify-between w-full mx-auto overflow-y-auto">
-                <div className="flex flex-col items-stretch opacity-100 mt-4 h-auto z-40 items-center flex-1 rounded w-full">
-                    <h6 className="text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-                        Home
-                    </h6>
-                    {/* Add more links or content here */}
-                    <ul className="w-full mt-4 space-y-2">
-                        <li className="text-gray-700 hover:text-blue-500">
-                            <a href="#section1">Section 1</a>
-                        </li>
-                        <li className="text-gray-700 hover:text-blue-500">
-                            <a href="#section2">Section 2</a>
-                        </li>
-                        <li className="text-gray-700 hover:text-blue-500">
-                            <a href="#section3">Section 3</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    );
-};
+            <div className="flex-col min-h-full px-0 flex flex-wrap items-center justify-between w-full mx-auto overflow-y-auto overflow-x-hidden">
 
-export default Sidebar;
+                <div className="flex bg-white flex-col items-stretch opacity-100 relative mt-4 overflow-y-auto overflow-x-hidden h-auto z-40 items-center flex-1 rounded w-full">
+
+                    <div className="md:flex-col md:min-w-full flex flex-col list-none">
+                        <Link to="company-profile" className="flex md:min-w-full text-blueGray-400 text-medium uppercase font-bold block pt--1 pb-4 no underline"
+                        >
+                            <FaHome />
+                            <h6 className='ml-3'>Company Profile</h6>
+                        </Link>
+                        <Link to="income-statement" className="flex md:min-w-full text-blueGray-400 text-medium uppercase font-bold block pt--1 pb-4 no underline"
+                        >
+                            <FaHome />
+                            <h6 className='ml-3'>Income Statement</h6>
+                        </Link>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </nav>
+    )
+}
+
+export default Sidebar

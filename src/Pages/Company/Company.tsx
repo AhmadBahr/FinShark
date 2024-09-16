@@ -4,6 +4,7 @@ import { CompanyProfile } from '../../company';
 import { getCompanyProfile } from '../../api.tsx';
 import Sidebar from '../../Components/Sidebar/Sidebar.tsx';
 import CompanyDashboard from '../../Components/CompanyDashboard/CompanyDashboard.tsx';
+import Tile from '../../Components/Tile/Tile.tsx';
 
 interface Props { }
 
@@ -57,7 +58,9 @@ const Company: React.FC<Props> = (props: Props) => {
                 {company ? (
                     <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
                         <Sidebar />
-                        <CompanyDashboard />
+                        <CompanyDashboard>
+                            <Tile title='Company Name' subTitle={company.companyName}></Tile>
+                            </CompanyDashboard>
                     </div>
                 ) : !error && (
                     <div className="text-center text-gray-600">
