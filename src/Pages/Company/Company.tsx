@@ -55,17 +55,13 @@ const Company: React.FC<Props> = (props: Props) => {
                     Error: {error}
                 </div>}
                 {company ? (
-                    <div className="bg-white shadow-md rounded-lg p-6 border border-gray-200">
-                        <h1 className="text-2xl font-bold mb-4">{company.companyName}</h1>
-                        <p><strong className="font-semibold">Symbol:</strong> {company.symbol}</p>
-                        <p><strong className="font-semibold">Description:</strong> {company.description}</p>
-                        <p><strong className="font-semibold">Industry:</strong> {company.industry}</p>
-                        <p><strong className="font-semibold">Address:</strong> {company.address}</p>
-                        <p><strong className="font-semibold">Stock Price:</strong> ${company.price}</p>
+                    <div className="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
+                        <Sidebar />
+                        <CompanyDashboard />
                     </div>
                 ) : !error && (
                     <div className="text-center text-gray-600">
-                        <CompanyDashboard />
+                        <div>Company Not Found</div>
                     </div>
                 )}
             </main>
