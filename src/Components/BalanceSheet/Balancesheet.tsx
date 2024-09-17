@@ -3,11 +3,12 @@ import { CompanyBalanceSheet } from "../../company";
 import { useOutletContext } from "react-router-dom";
 import RatioList from "../RatioList/RatioList.tsx";
 import { getBalanceSheet } from "../../api.tsx";
+import Table from "../Table/Table";
 import Spinner from "../Spinner/Spinner.tsx";
 import {
   formatLargeMonetaryNumber,
   formatLargeNonMonetaryNumber,
-} from "../../Helpers/NumberFormatting";
+} from "../../Helpers/NumberFormatting.tsx";
 
 type Props = {};
 
