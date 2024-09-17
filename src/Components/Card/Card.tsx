@@ -19,7 +19,7 @@ const Card: React.FC<Props> = ({ id, searchResult, onPortfolioCreate }: Props): 
         >
             <div className="flex flex-col md:flex-row md:items-start md:justify-between w-full">
                 <div className="flex flex-col items-center md:items-start w-full md:w-auto">
-                    <Link to={`/company/${searchResult.symbol}`} className="font-bold text-center md:text-left text-veryDarkViolet">
+                    <Link to={`/company/${searchResult.symbol}/company-profile`} className="font-bold text-center md:text-left text-veryDarkViolet">
                         {searchResult.name} ({searchResult.symbol})
                     </Link>
                     <p className="text-veryDarkBlue">{searchResult.currency}</p>

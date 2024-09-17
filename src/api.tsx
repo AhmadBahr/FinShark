@@ -110,3 +110,25 @@ export const getBalanceSheet = async (symbol: string): Promise<CompanyBalanceShe
         }
     }
 };
+
+export const getCashflowStatement = async (symbol: string): Promise<CompanyBalanceSheet[] | string> => {
+    try {
+        const response = await axios.get<CompanyBalanceSheet[]>(
+            `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${symbol}?apikey=${process.env.REACT_APP_API_KEY}`
+        );
+
+        if (Array.isArray(response.data) && response.data.length > 0) {
+            return response.data;
+        } else {
+            return "No balance sheet found";
+        }
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            console.error("Error fetching balance sheet:", error.message);
+            return `Error: ${error.message}`;
+        } else {
+            console.error("Unexpected error:", error);
+            return "An unexpected error occurred";
+        }
+    }
+};

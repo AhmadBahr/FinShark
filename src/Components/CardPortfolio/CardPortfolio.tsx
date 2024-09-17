@@ -10,7 +10,7 @@ interface Props {
 const CardPortfolio: React.FC<Props> = ({ portfolioValue, onPortfolioDelete }) => {
     return (
         <div className='p-4 border rounded-lg shadow-md'>
-            <Link to={`/company/${portfolioValue}`} className='text-xl font-semibold mb-2'>{portfolioValue}</Link>
+            <Link to={`/company/${portfolioValue}/comapny-profile`} className='text-xl font-semibold mb-2'>{portfolioValue}</Link>
             <DeletePortfolio
                 onPortfolioDelete={onPortfolioDelete}
                 portfolioValue={portfolioValue}

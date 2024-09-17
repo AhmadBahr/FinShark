@@ -1,64 +1,87 @@
 import React, { useEffect, useState } from "react";
+import { CompanyBalanceSheet } from "../../company";
 import { useOutletContext } from "react-router-dom";
-import { CompanyCashFlow } from "../../company";
-import { getCashFlow } from "../../api";
+import RatioList from "../RatioList/RatioList.tsx";
+import { getBalanceSheet } from "../../api.tsx";
 import Table from "../Table/Table";
-import Spinner from "../Spinners/Spinner";
+import Spinner from "../Spinners/Spinner.tsx";
 
 type Props = {};
 
 const config = [
   {
-    label: "Date",
-    render: (company: CompanyCashFlow) => company.date,
+    label: <div className="font-bold">Total Assets</div>,
+    render: (company: CompanyBalanceSheet) => company.totalAssets,
   },
   {
-    label: "Operating Cashflow",
-    render: (company: CompanyCashFlow) => company.operatingCashFlow,
+    label: "Current Assets",
+    render: (company: CompanyBalanceSheet) => company.totalCurrentAssets,
   },
   {
-    label: "Investing Cashflow",
-    render: (company: CompanyCashFlow) =>
-      company.netCashUsedForInvestingActivites,
+    label: "Total Cash",
+    render: (company: CompanyBalanceSheet) => company.cashAndCashEquivalents,
   },
   {
-    label: "Financing Cashflow",
-    render: (company: CompanyCashFlow) =>
-      company.netCashUsedProvidedByFinancingActivities,
+    label: "Property & equipment",
+    render: (company: CompanyBalanceSheet) => company.propertyPlantEquipmentNet,
   },
   {
-    label: "Cash At End of Period",
-    render: (company: CompanyCashFlow) => company.cashAtEndOfPeriod,
+    label: "Intangible Assets",
+    render: (company: CompanyBalanceSheet) => company.intangibleAssets,
   },
   {
-    label: "CapEX",
-    render: (company: CompanyCashFlow) => company.capitalExpenditure,
+    label: "Long Term Debt",
+    render: (company: CompanyBalanceSheet) => company.longTermDebt,
   },
   {
-    label: "Issuance Of Stock",
-    render: (company: CompanyCashFlow) => company.commonStockIssued,
+    label: "Total Debt",
+    render: (company: CompanyBalanceSheet) => company.otherCurrentLiabilities,
   },
   {
-    label: "Free Cash Flow",
-    render: (company: CompanyCashFlow) => company.freeCashFlow,
+    label: <div className="font-bold">Total Liabilites</div>,
+    render: (company: CompanyBalanceSheet) => company.totalLiabilities,
+  },
+  {
+    label: "Current Liabilities",
+    render: (company: CompanyBalanceSheet) => company.totalCurrentLiabilities,
+  },
+  {
+    label: "Long-Term Debt",
+    render: (company: CompanyBalanceSheet) => company.longTermDebt,
+  },
+  {
+    label: "Long-Term Income Taxes",
+    render: (company: CompanyBalanceSheet) => company.otherLiabilities,
+  },
+  {
+    label: "Stakeholder's Equity",
+    render: (company: CompanyBalanceSheet) => company.totalStockholdersEquity,
+  },
+  {
+    label: "Retained Earnings",
+    render: (company: CompanyBalanceSheet) => company.retainedEarnings,
   },
 ];
 
-const CashflowStatement = (props: Props) => {
+const BalanceSheet = (props: Props) => {
   const ticker = useOutletContext<string>();
-  const [cashFlowData, setCashFlowData] = useState<CompanyCashFlow[]>();
+  const [companyData, setCompanyData] = useState<CompanyBalanceSheet>();
   useEffect(() => {
-    const getRatios = async () => {
-      const result = await getCashFlow(ticker);
-      setCashFlowData(result!.data);
+    const getCompanyData = async () => {
+      const value = await getBalanceSheet(ticker!);
+      setCompanyData(value?.data[0]);
     };
-    getRatios();
+    getCompanyData();
   }, []);
-  return cashFlowData ? (
-    <Table config={config} data={cashFlowData}></Table>
-  ) : (
-    <Spinner />
+  return (
+    <>
+      {companyData ? (
+        <RatioList config={config} data={companyData} />
+      ) : (
+        <Spinner />
+      )}
+    </>
   );
 };
 
-export default CashflowStatement;
+export default BalanceSheet;
