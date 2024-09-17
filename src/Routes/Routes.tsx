@@ -7,6 +7,7 @@ import Company from "../Pages/Company/Company.tsx";
 import CompanyProfile from "../Components/CompanyProfile/CompanyProfile.tsx";
 import IncomeStatement from "../Components/IncomeStatement/IncomeStatement.tsx";
 import DesignPage from "../Pages/DesignPage/DesignPage.tsx"
+import Balancesheet from "../Components/BalanceSheet/Balancesheet.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -30,7 +31,8 @@ export const router = createBrowserRouter([
                 element: <Company />,
                 children: [
                     { path: "company-profile", element: <CompanyProfile /> },
-                    { path: "income-statement", element: <IncomeStatement /> }
+                    { path: "income-statement", element: <IncomeStatement /> },
+                    { path: "balance-sheet", element: <Balancesheet />}
                 ]
             }
         ]
