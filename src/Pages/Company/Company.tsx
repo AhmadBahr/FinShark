@@ -6,6 +6,7 @@ import Sidebar from '../../Components/Sidebar/Sidebar.tsx';
 import CompanyDashboard from '../../Components/CompanyDashboard/CompanyDashboard.tsx';
 import Tile from '../../Components/Tile/Tile.tsx';
 import Spinner from '../../Components/Spinner/Spinner.tsx';
+import CompFinder from '../../Components/CompFinder/CompFinder.tsx';
 
 interface Props { }
 
@@ -63,6 +64,8 @@ const Company: React.FC<Props> = (props: Props) => {
                             <Tile title='Company Name' subTitle={company.companyName}></Tile>
                             <Tile title='Price' subTitle={company.price.toString()}></Tile>
                             <Tile title='Sector' subTitle={company.sector}></Tile>
+                            <Tile title='Market Cap' subTitle={company.mktCap.toString()}></Tile>
+                            <CompFinder ticker={company.symbol} />
                             <p className="bg-white shadow rounded text-medium font-medium text-gray-900 p-3 mt-1 m-4">
                                 {company.description}
                             </p>
@@ -70,7 +73,7 @@ const Company: React.FC<Props> = (props: Props) => {
                     </div>
                 ) : !error && (
                     <div className="text-center text-gray-600">
-                        <Spinner/>
+                        <Spinner />
                     </div>
                 )}
             </main>
