@@ -1,135 +1,90 @@
-import axios from 'axios';
-import { CompanyBalanceSheet, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch, CompanyCompData } from './company';
+import axios from "axios";
+import {
+    CompanyBalanceSheet,
+    CompanyCashFlow,
+    CompanyCompData,
+    CompanyIncomeStatement,
+    CompanyKeyMetrics,
+    CompanyProfile,
+    CompanySearch,
+    CompanyTenK,
+    CompanyHistoricalDividend,
+    Dividend,
+} from "./company";
 
-export const searchCompanies = async (query: string): Promise<CompanySearch[] | string> => {
+export interface SearchResponse {
+    data: CompanySearch[];
+}
+
+export const searchCompanies = async (query: string) => {
     try {
-        const response = await axios.get<CompanySearch[]>(
-            `https://financialmodelingprep.com/api/v3/search?query=${query}&limit=40&exchange=NASDAQ&apikey=${process.env.REACT_APP_API_KEY}`
+        const data = await axios.get<SearchResponse>(
+            `https://financialmodelingprep.com/api/v3/search?query=${query}&limit=10&exchange=NASDAQ&apikey=${process.env.REACT_APP_API_KEY}`
         );
-
-        if (Array.isArray(response.data)) {
-            return response.data;
-        } else {
-            return "No results found";
-        }
+        return data;
     } catch (error) {
         if (axios.isAxiosError(error)) {
-            console.error('Error message from API:', error.message);
-            return `Error: ${error.message}`;
+            console.log("error message: ", error.message);
+            return error.message;
         } else {
-            console.error('Unexpected error:', error);
-            return "An unexpected error occurred";
+            console.log("unexpected error: ", error);
+            return "An expected error has occured.";
         }
     }
 };
 
-export const getCompanyProfile = async (symbol: string): Promise<CompanyProfile | string> => {
+export const getCompanyProfile = async (query: string) => {
     try {
-        const response = await axios.get<CompanyProfile[]>(
-            `https://financialmodelingprep.com/api/v3/profile/${symbol}?apikey=${process.env.REACT_APP_API_KEY}`
+        const data = await axios.get<CompanyProfile[]>(
+            `https://financialmodelingprep.com/api/v3/profile/${query}?apikey=${process.env.REACT_APP_API_KEY}`
         );
-
-        if (Array.isArray(response.data) && response.data.length > 0) {
-            return response.data[0];
-        } else {
-            return "No profile found";
-        }
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            console.error("Error fetching company profile:", error.message);
-            return `Error: ${error.message}`;
-        } else {
-            console.error("Unexpected error:", error);
-            return "An unexpected error occurred";
-        }
+        return data;
+    } catch (error: any) {
+        console.log("error message: ", error.message);
     }
 };
 
-export const getKeyMetrics = async (symbol: string): Promise<CompanyKeyMetrics | string> => {
+export const getKeyMetrics = async (query: string) => {
     try {
-        const response = await axios.get<CompanyKeyMetrics[]>(
-            `https://financialmodelingprep.com/api/v3/key-metrics-ttm/${symbol}?apikey=${process.env.REACT_APP_API_KEY}`
+        const data = await axios.get<CompanyKeyMetrics[]>(
+            `https://financialmodelingprep.com/api/v3/key-metrics-ttm/${query}?limit=40&apikey=${process.env.REACT_APP_API_KEY}`
         );
-
-        if (Array.isArray(response.data) && response.data.length > 0) {
-            return response.data[0];
-        } else {
-            return "No key metrics found";
-        }
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            console.error("Error fetching key metrics:", error.message);
-            return `Error: ${error.message}`;
-        } else {
-            console.error("Unexpected error:", error);
-            return "An unexpected error occurred";
-        }
+        return data;
+    } catch (error: any) {
+        console.log("error message: ", error.message);
     }
 };
 
-export const getIncomeStatement = async (symbol: string): Promise<CompanyIncomeStatement[] | string> => {
+export const getIncomeStatement = async (query: string) => {
     try {
-        const response = await axios.get<CompanyIncomeStatement[]>(
-            `https://financialmodelingprep.com/api/v3/income-statement/${symbol}?apikey=${process.env.REACT_APP_API_KEY}`
+        const data = await axios.get<CompanyIncomeStatement[]>(
+            `https://financialmodelingprep.com/api/v3/income-statement/${query}?limit=50&apikey=${process.env.REACT_APP_API_KEY}`
         );
-
-        if (Array.isArray(response.data) && response.data.length > 0) {
-            return response.data;
-        } else {
-            return "No income statement found";
-        }
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            console.error("Error fetching income statement:", error.message);
-            return `Error: ${error.message}`;
-        } else {
-            console.error("Unexpected error:", error);
-            return "An unexpected error occurred";
-        }
+        return data;
+    } catch (error: any) {
+        console.log("error message: ", error.message);
     }
 };
 
-export const getBalanceSheet = async (symbol: string): Promise<CompanyBalanceSheet[] | string> => {
+export const getBalanceSheet = async (query: string) => {
     try {
-        const response = await axios.get<CompanyBalanceSheet[]>(
-            `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${symbol}?apikey=${process.env.REACT_APP_API_KEY}`
+        const data = await axios.get<CompanyBalanceSheet[]>(
+            `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${query}?limit=20&apikey=${process.env.REACT_APP_API_KEY}`
         );
-
-        if (Array.isArray(response.data) && response.data.length > 0) {
-            return response.data;
-        } else {
-            return "No balance sheet found";
-        }
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            console.error("Error fetching balance sheet:", error.message);
-            return `Error: ${error.message}`;
-        } else {
-            console.error("Unexpected error:", error);
-            return "An unexpected error occurred";
-        }
+        return data;
+    } catch (error: any) {
+        console.log("error message: ", error.message);
     }
 };
 
-export const getCashflow = async (symbol: string): Promise<CompanyBalanceSheet[] | string> => {
+export const getCashFlow = async (query: string) => {
     try {
-        const response = await axios.get<CompanyBalanceSheet[]>(
-            `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${symbol}?apikey=${process.env.REACT_APP_API_KEY}`
+        const data = await axios.get<CompanyCashFlow[]>(
+            `https://financialmodelingprep.com/api/v3/cash-flow-statement/${query}?limit=100&apikey=${process.env.REACT_APP_API_KEY}`
         );
-
-        if (Array.isArray(response.data) && response.data.length > 0) {
-            return response.data;
-        } else {
-            return "No balance sheet found";
-        }
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            console.error("Error fetching balance sheet:", error.message);
-            return `Error: ${error.message}`;
-        } else {
-            console.error("Unexpected error:", error);
-            return "An unexpected error occurred";
-        }
+        return data;
+    } catch (error: any) {
+        console.log("error message: ", error.message);
     }
 };
 
@@ -143,3 +98,14 @@ export const getCompData = async (query: string) => {
         console.log("error message: ", error.message);
     }
 };
+
+export const getTenK = async (query: string) => {
+    try {
+        const data = await axios.get<CompanyTenK[]>(
+            `https://financialmodelingprep.com/api/v3/sec_filings/${query}?type=10-K&page=0&apikey=${process.env.REACT_APP_API_KEY}`
+        );
+        return data;
+    } catch (error: any) {
+        console.log("error message: ", error.message);
+    }
+}
