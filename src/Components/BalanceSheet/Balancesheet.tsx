@@ -4,7 +4,7 @@ import { useOutletContext } from "react-router-dom";
 import RatioList from "../RatioList/RatioList.tsx";
 import { getBalanceSheet } from "../../api.tsx";
 import Table from "../Table/Table";
-import Spinner from "../Spinners/Spinner.tsx";
+import Spinner from "../Spinner/Spinner.tsx";
 
 type Props = {};
 

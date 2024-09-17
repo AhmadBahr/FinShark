@@ -5,6 +5,7 @@ import { getCompanyProfile } from '../../api.tsx';
 import Sidebar from '../../Components/Sidebar/Sidebar.tsx';
 import CompanyDashboard from '../../Components/CompanyDashboard/CompanyDashboard.tsx';
 import Tile from '../../Components/Tile/Tile.tsx';
+import Spinner from '../../Components/Spinner/Spinner.tsx';
 
 interface Props { }
 
@@ -69,7 +70,7 @@ const Company: React.FC<Props> = (props: Props) => {
                     </div>
                 ) : !error && (
                     <div className="text-center text-gray-600">
-                        <div>Company Not Found</div>
+                        <Spinner/>
                     </div>
                 )}
             </main>

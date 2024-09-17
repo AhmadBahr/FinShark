@@ -1,80 +1,88 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
+import Table from "../Table/Table.tsx";
+import { CompanyIncomeStatement } from "../../company";
+import { getIncomeStatement } from "../../api.tsx";
+import Spinner from "../Spinner/Spinner.tsx";
 
-type IncomeStatementData = {
-    year: number;
-    revenue: number;
-    costOfGoodsSold: number;
-    grossProfit: number;
-    operatingExpenses: number;
-    netIncome: number;
-};
+type Props = {};
 
-type Props = {
-    data: IncomeStatementData[];
-};
-
-const IncomeStatement: React.FC<Props> = ({ data = [] }) => {
-    return (
-        <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
-            <h2 className="text-xl font-bold mb-4">Income Statement</h2>
-            <table className="min-w-full divide-y divide-gray-200">
-                <thead>
-                    <tr>
-                        <th className="py-2 px-4 text-left">Year</th>
-                        <th className="py-2 px-4 text-left">Revenue</th>
-                        <th className="py-2 px-4 text-left">Cost of Goods Sold</th>
-                        <th className="py-2 px-4 text-left">Gross Profit</th>
-                        <th className="py-2 px-4 text-left">Operating Expenses</th>
-                        <th className="py-2 px-4 text-left">Net Income</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((item, index) => (
-                        <tr key={index}>
-                            <td className="py-2 px-4 border">{item.year}</td>
-                            <td className="py-2 px-4 border">${item.revenue.toLocaleString()}</td>
-                            <td className="py-2 px-4 border">${item.costOfGoodsSold.toLocaleString()}</td>
-                            <td className="py-2 px-4 border">${item.grossProfit.toLocaleString()}</td>
-                            <td className="py-2 px-4 border">${item.operatingExpenses.toLocaleString()}</td>
-                            <td className="py-2 px-4 border">${item.netIncome.toLocaleString()}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
-};
-
-
-const mockIncomeStatementData: IncomeStatementData[] = [
+const configs = [
     {
-        year: 2021,
-        revenue: 5000000,
-        costOfGoodsSold: 2000000,
-        grossProfit: 3000000,
-        operatingExpenses: 1000000,
-        netIncome: 2000000,
+        label: "Date",
+        render: (company: CompanyIncomeStatement) => company.date,
     },
     {
-        year: 2020,
-        revenue: 4500000,
-        costOfGoodsSold: 1800000,
-        grossProfit: 2700000,
-        operatingExpenses: 900000,
-        netIncome: 1800000,
+        label: "Revenue",
+        render: (company: CompanyIncomeStatement) => company.revenue,
     },
     {
-        year: 2019,
-        revenue: 4000000,
-        costOfGoodsSold: 1600000,
-        grossProfit: 2400000,
-        operatingExpenses: 800000,
-        netIncome: 1600000,
+        label: "Cost Of Revenue",
+        render: (company: CompanyIncomeStatement) => company.costOfRevenue,
+    },
+    {
+        label: "Depreciation",
+        render: (company: CompanyIncomeStatement) =>
+            company.depreciationAndAmortization,
+    },
+    {
+        label: "Operating Income",
+        render: (company: CompanyIncomeStatement) => company.operatingIncome,
+    },
+    {
+        label: "Income Before Taxes",
+        render: (company: CompanyIncomeStatement) => company.incomeBeforeTax,
+    },
+    {
+        label: "Net Income",
+        render: (company: CompanyIncomeStatement) => company.netIncome,
+    },
+    {
+        label: "Net Income Ratio",
+        render: (company: CompanyIncomeStatement) => company.netIncomeRatio,
+    },
+    {
+        label: "Earnings Per Share",
+        render: (company: CompanyIncomeStatement) => company.eps,
+    },
+    {
+        label: "Earnings Per Diluted",
+        render: (company: CompanyIncomeStatement) => company.epsdiluted,
+    },
+    {
+        label: "Gross Profit Ratio",
+        render: (company: CompanyIncomeStatement) => company.grossProfitRatio,
+    },
+    {
+        label: "Opearting Income Ratio",
+        render: (company: CompanyIncomeStatement) => company.operatingIncomeRatio,
+    },
+    {
+        label: "Income Before Taxes Ratio",
+        render: (company: CompanyIncomeStatement) => company.incomeBeforeTaxRatio,
     },
 ];
 
-const App = () => {
-    return <IncomeStatement data={mockIncomeStatementData} />;
+const IncomeStatement = (props: Props) => {
+    const ticker = useOutletContext<string>();
+    const [incomeStatement, setIncomeStatement] =
+        useState<CompanyIncomeStatement[]>();
+    useEffect(() => {
+        const getRatios = async () => {
+            const result = await getIncomeStatement(ticker!);
+            setIncomeStatement(result!.data);
+        };
+        getRatios();
+    }, []);
+    return (
+        <>
+            {incomeStatement ? (
+                <Table config={configs} data={incomeStatement} />
+            ) : (
+                <Spinner />
+            )}
+        </>
+    );
 };
 
-export default App;
+export default IncomeStatement;

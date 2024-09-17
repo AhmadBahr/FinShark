@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { CompanyCashFlow } from "../../company";
 import { getCashflowStatement } from "../../api.tsx";
 import Table from "../Table/Table.tsx";
-import Spinner from "../Spinners/Spinner.tsx";
+import Spinner from "../Spinner/Spinner.tsx";
 
 type Props = {};
 
