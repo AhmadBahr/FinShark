@@ -6,6 +6,7 @@ import SearchPage from "../Pages/SearchPage/SearchPage.tsx";
 import Company from "../Pages/Company/Company.tsx";
 import CompanyProfile from "../Components/CompanyProfile/CompanyProfile.tsx";
 import IncomeStatement from "../Components/IncomeStatement/IncomeStatement.tsx";
+import DesignPage from "../Pages/DesignPage/DesignPage.tsx"
 
 export const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
             {
                 path: "search",
                 element: <SearchPage />,
+            },
+            {
+                path: "designpage",
+                element: <DesignPage />,
             },
             {
                 path: "company/:ticker",
