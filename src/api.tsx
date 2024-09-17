@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CompanyBalanceSheet, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch } from './company';
+import { CompanyBalanceSheet, CompanyIncomeStatement, CompanyKeyMetrics, CompanyProfile, CompanySearch, CompanyCompData } from './company';
 
 export const searchCompanies = async (query: string): Promise<CompanySearch[] | string> => {
     try {
@@ -111,7 +111,7 @@ export const getBalanceSheet = async (symbol: string): Promise<CompanyBalanceShe
     }
 };
 
-export const getCashflowStatement = async (symbol: string): Promise<CompanyBalanceSheet[] | string> => {
+export const getCashflow = async (symbol: string): Promise<CompanyBalanceSheet[] | string> => {
     try {
         const response = await axios.get<CompanyBalanceSheet[]>(
             `https://financialmodelingprep.com/api/v3/balance-sheet-statement/${symbol}?apikey=${process.env.REACT_APP_API_KEY}`
@@ -130,5 +130,16 @@ export const getCashflowStatement = async (symbol: string): Promise<CompanyBalan
             console.error("Unexpected error:", error);
             return "An unexpected error occurred";
         }
+    }
+};
+
+export const getCompData = async (query: string) => {
+    try {
+        const data = await axios.get<CompanyCompData[]>(
+            `https://financialmodelingprep.com/api/v4/stock_peers?symbol=${query}&apikey=${process.env.REACT_APP_API_KEY}`
+        );
+        return data;
+    } catch (error: any) {
+        console.log("error message: ", error.message);
     }
 };
