@@ -4,7 +4,9 @@ import RatioList from '../../Components/RatioList/RatioList.tsx'
 import { CompanyKeyMetrics } from '../../company'
 import { testIncomeStatementData } from '../../Components/Table/testData.tsx'
 
-type Props = {}
+type Props = {
+    
+}
 
 const tableConfig = [
     {
@@ -19,7 +21,7 @@ const DesignPage = (props: Props) => {
         <>
             <h1>FinShark Design Page</h1>
             <RatioList data={testIncomeStatementData} config={tableConfig} />
-            <Table />
+            <Table config={tableConfig} data={testIncomeStatementData} />
             <h2>This is FinShark's design page. This is where we will house various
                 design aspects  of the app
             </h2>
