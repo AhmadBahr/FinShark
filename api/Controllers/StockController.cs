@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using api.Data;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using api.Dtos;
+
 
 namespace api.Controllers
 {
@@ -40,5 +42,15 @@ namespace api.Controllers
             return Ok(stock.ToStockDto());
         }
 
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateStockRequestDto stockDto)
+        {
+            var stock = stockDto.ToStock();
+
+            _context.Stocks.Add(stock);
+            _context.SaveChanges();
+
+            return CreatedAtAction(nameof(GetById), new { id = stock.Id }, stock.ToStockDto());
+        }
     }
 }
