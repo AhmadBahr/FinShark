@@ -8,8 +8,6 @@ using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using api.Dtos;
-
 
 namespace api.Controllers
 {
@@ -48,16 +46,20 @@ namespace api.Controllers
             return Ok(stock.ToStockDto());
         }
 
-    [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateStockRequestDto stockDto)
-    {
-        var stockModel = stockDto.ToStockModel();
-        await _context.Stocks.AddAsync(stockModel);
-        await _context.SaveChangesAsync();
-        return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
-    }
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateStockRequestDto createDto)
+        {
+            var stockModel = createDto.ToStockModel();
 
+            _context.Stocks.Add(stockModel);
 
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
+        }
+
+        // PUT: api/Stock/5
+        // To protect from overposting attacks, see XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateStockRequestDto updateDto)
