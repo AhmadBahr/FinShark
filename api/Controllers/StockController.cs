@@ -46,10 +46,10 @@ namespace api.Controllers
             return Ok(stock.ToStockDto());
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateStockRequestDto createDto)
+      [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateStock createDto)
         {
-            var stockModel = createDto.ToStockModel();
+            var stockModel = createDto.ToStockFromCreateDto(); // Use the correct method here
 
             _context.Stocks.Add(stockModel);
 
@@ -57,6 +57,7 @@ namespace api.Controllers
 
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
         }
+
 
         // PUT: api/Stock/5
         // To protect from overposting attacks, see XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

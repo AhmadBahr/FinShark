@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using api.Interfaces;
 using api.Models;
 using api.Data;
-using api.Dtos.Stock; // Ensure the DTO namespace is included
+using api.Dtos.Stock;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Repository
@@ -42,7 +42,6 @@ namespace api.Repository
                 return null;
             }
 
-            // Update stock properties with the DTO values
             stockModel.Symbol = stockDto.Symbol;
             stockModel.CompanyName = stockDto.CompanyName;
             stockModel.Purchase = stockDto.Purchase;
