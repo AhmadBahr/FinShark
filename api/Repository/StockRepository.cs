@@ -22,7 +22,7 @@ namespace api.Repository
             return await _context.Stocks.ToListAsync();
         }
 
-        public async Task<Stock> GetByIdAsync(int id)
+        public async Task<Stock?> GetByIdAsync(int id)
         {
             return await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
         }
@@ -36,21 +36,21 @@ namespace api.Repository
 
         public async Task<Stock?> UpdateAsync(int id, UpdateStockRequestDto stockDto)
         {
-            var stockModel = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
-            if (stockModel == null)
+            var existingStock = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
+            if (existingStock == null)
             {
                 return null;
             }
 
-            stockModel.Symbol = stockDto.Symbol;
-            stockModel.CompanyName = stockDto.CompanyName;
-            stockModel.Purchase = stockDto.Purchase;
-            stockModel.LastDiv = stockDto.LastDiv;
-            stockModel.Industry = stockDto.Industry;
-            stockModel.MarketCap = stockDto.MarketCap;
+            existingStock.Symbol = stockDto.Symbol;
+            existingStock.CompanyName = stockDto.CompanyName;
+            existingStock.Purchase = stockDto.Purchase;
+            existingStock.LastDiv = stockDto.LastDiv;
+            existingStock.Industry = stockDto.Industry;
+            existingStock.MarketCap = stockDto.MarketCap;
 
             await _context.SaveChangesAsync();
-            return stockModel;
+            return existingStock;
         }
 
         public async Task<Stock?> DeleteAsync(int id)
