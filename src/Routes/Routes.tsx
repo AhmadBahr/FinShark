@@ -7,8 +7,9 @@ import CompanyProfile from "../Components/CompanyProfile/CompanyProfile";
 import IncomeStatement from "../Components/IncomeStatement/IncomeStatement";
 import DesignGuide from "../Pages/DesignGuide/DesignGuide";
 import BalanceSheet from "../Components/BalanceSheet/Balancesheet";
-import CashflowStatement from "../Components/CashflowStatement/CashflowStatement";
 import HistoricalDividend from "../Components/HistoricalDividend/HistoricalDividend";
+import CashflowStatement from "../Components/CashflowStatement/CashflowStatement";
+import LoginPage from "../Pages/LoginPage/LoginPage";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "", element: <HomePage /> },
+      { path: "login", element: <LoginPage /> },
       { path: "search", element: <SearchPage /> },
       { path: "design-guide", element: <DesignGuide /> },
       {
@@ -32,4 +34,3 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
-
