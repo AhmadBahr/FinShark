@@ -4,7 +4,7 @@ import logo from "./logo.png";
 import "./Navbar.css";
 import { useAuth } from "../../Context/useAuth";
 
-interface Props {}
+interface Props { }
 
 const Navbar = (props: Props) => {
   const { isLoggedIn, user, logout } = useAuth();
