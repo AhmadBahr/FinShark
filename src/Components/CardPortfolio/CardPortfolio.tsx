@@ -1,5 +1,5 @@
 import React, { SyntheticEvent } from 'react'
-import DeletePortfolio from '../DeletePortfolio/DeletePortfolio.tsx';
+import DeletePortfolio from '../DeletePortfolio/DeletePortfolio';
 import { Link } from 'react-router-dom';
 
 interface Props {

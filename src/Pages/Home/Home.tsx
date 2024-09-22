@@ -1,14 +1,14 @@
-import React from 'react'
-import Hero from '../../Components/Hero/Hero.tsx'
+import React from "react";
+import Hero from "../../Components/Hero/Hero";
 
-interface Props { }
+type Props = {};
 
-const Home = (props: Props) => {
+const HomePage = (props: Props) => {
     return (
-        <div>
+        <>
             <Hero />
-        </div>
-    )
-}
+        </>
+    );
+};
 
-export default Home
+export default HomePage;

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-import Table from "../Table/Table.tsx";
+import Table from "../Table/Table";
 import { CompanyIncomeStatement } from "../../company";
-import { getIncomeStatement } from "../../api.tsx";
-import Spinner from "../Spinner/Spinner.tsx";
+import { getIncomeStatement } from "../../api";
+import Spinner from "../Spinners/Spinner";
 import {
   formatLargeMonetaryNumber,
   formatRatio,
-} from "../../Helpers/NumberFormatting.tsx";
+} from "../../Helpers/NumberFormatting";
 
 type Props = {};
 

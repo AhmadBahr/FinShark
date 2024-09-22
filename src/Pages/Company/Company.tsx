@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { CompanyProfile } from "../../company";
 import { Link, useParams } from "react-router-dom";
-import { getCompanyProfile } from "../../api.tsx";
-import Sidebar from "../../Components/Sidebar/Sidebar.tsx";
-import CompanyDashboard from "../../Components/CompanyDashboard/CompanyDashboard.tsx";
-import Tile from "../../Components/Tile/Tile.tsx";
-import Spinner from "../../Components/Spinner/Spinner.tsx";
-import CompFinder from "../../Components/CompFinder/CompFinder.tsx";
-import TenKFinder from "../../Components/TenKFinder/TenKFinder.tsx";
+import { getCompanyProfile } from "../../api";
+import Sidebar from "../../Components/Sidebar/Sidebar";
+import CompanyDashboard from "../../Components/CompanyDashboard/CompanyDashboard";
+import Tile from "../../Components/Tile/Tile";
+import Spinner from "../../Components/Spinners/Spinner";
+import CompFinder from "../../Components/CompFinder/CompFinder";
+import TenKFinder from "../../Components/TenKFinder/TenKFinder";
 
 interface Props { }
 

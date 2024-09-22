@@ -1,42 +1,34 @@
-import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App.tsx";
-import Home from "../Pages/Home/Home.tsx";
-import SearchPage from "../Pages/SearchPage/SearchPage.tsx";
-import Company from "../Pages/Company/Company.tsx";
-import CompanyProfile from "../Components/CompanyProfile/CompanyProfile.tsx";
-import IncomeStatement from "../Components/IncomeStatement/IncomeStatement.tsx";
-import DesignPage from "../Pages/DesignPage/DesignPage.tsx"
-import Balancesheet from "../Components/BalanceSheet/Balancesheet.tsx";
-import CashflowStatement from "../Components/CashflowStatement/CashflowStatement.tsx";
+import App from "../App";
+import HomePage from "../Pages/HomePage/HomePage";
+import CompanyPage from "../Pages/CompanyPage/CompanyPage";
+import SearchPage from "../Pages/SearchPage/SearchPage";
+import CompanyProfile from "../Components/CompanyProfile/CompanyProfile";
+import IncomeStatement from "../Components/IncomeStatement/IncomeStatement";
+import DesignGuide from "../Pages/DesignGuide/DesignGuide";
+import BalanceSheet from "../Components/BalanceSheet/Balancesheet";
+import CashflowStatement from "../Components/CashflowStatement/CashflowStatement";
+import HistoricalDividend from "../Components/HistoricalDividend/HistoricalDividend";
 
 export const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "", element: <HomePage /> },
+      { path: "search", element: <SearchPage /> },
+      { path: "design-guide", element: <DesignGuide /> },
+      {
+        path: "company/:ticker",
+        element: <CompanyPage />,
         children: [
-            {
-                index: true,
-                element: <Home />,
-            },
-            {
-                path: "search",
-                element: <SearchPage />,
-            },
-            {
-                path: "designpage",
-                element: <DesignPage />,
-            },
-            {
-                path: "company/:ticker",
-                element: <Company />,
-                children: [
-                    { path: "company-profile", element: <CompanyProfile /> },
-                    { path: "income-statement", element: <IncomeStatement /> },
-                    { path: "balance-sheet", element: <Balancesheet/>},
-                    { path: "cashflow-statement", element: <CashflowStatement />}
-                ]
-            }
-        ]
-    }
+          { path: "company-profile", element: <CompanyProfile /> },
+          { path: "income-statement", element: <IncomeStatement /> },
+          { path: "balance-sheet", element: <BalanceSheet /> },
+          { path: "cashflow-statement", element: <CashflowStatement /> },
+          { path: "historical-dividend", element: <HistoricalDividend /> },
+        ],
+      },
+    ],
+  },
 ]);

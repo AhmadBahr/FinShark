@@ -1,22 +1,36 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "./logo.png";
+import "./Navbar.css";
 
-const Navbar = () => {
+interface Props {}
+
+const Navbar = (props: Props) => {
   return (
-    <nav className='flex justify-between items-center p-4'>
-      <div className='flex items-center gap-4'>
-        <Link to="/">
-          <img src={logo} alt="logo" className='w-20 h-15' />
-        </Link>
-        <Link to='/search' className='font-bold hover:text-blue-600'>Search</Link>
+    <nav className="relative container mx-auto p-6">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-20">
+          <Link to="/">
+            <img src={logo} alt="" />
+          </Link>
+          <div className="hidden font-bold lg:flex">
+            <Link to="/search" className="text-black hover:text-darkBlue">
+              Search
+            </Link>
+          </div>
+        </div>
+        <div className="hidden lg:flex items-center space-x-6 text-back">
+          <div className="hover:text-darkBlue">Login</div>
+          <a
+            href=""
+            className="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70"
+          >
+            Signup
+          </a>
+        </div>
       </div>
-      <ul className='flex gap-4 items-center'>
-        <li><a href='#' className='font-bold text-white bg-green-500 px-4 py-2 rounded hover:bg-green-400'>Sign Up</a></li>
-        <li><a href='#' className='font-bold text-gray-600 hover:underline'>Login</a></li>
-      </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

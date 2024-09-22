@@ -1,75 +1,70 @@
-import React, { useState, ChangeEvent, SyntheticEvent } from 'react';
-import Hero from '../../Components/Hero/Hero.tsx';
-import Search from '../../Components/Search/Search.tsx';
-import ListPortfolio from '../../Components/Portfolio/ListPortfolio/ListPortfolio/ListPortfolio.tsx';
-import CardList from '../../Components/CardList/CardList.tsx';
-import { CompanySearch } from '../../company.tsx';
-import { searchCompanies } from '../../api.tsx';
+import React, { useState, ChangeEvent, SyntheticEvent } from "react";
+import Navbar from "../../Components/Navbar/Navbar";
+import { CompanySearch } from "../../company";
+import { searchCompanies } from "../../api";
+import Search from "../../Components/Search/Search";
+import ListPortfolio from "../../Components/Portfolio/ListPortfolio/ListPortfolio";
+import CardList from "../../Components/CardList/CardList";
 
-const SearchPage: React.FC = () => {
-    const [search, setSearch] = useState<string>("");
-    const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
-    const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
-    const [serverError, setServerError] = useState<string>("");
+interface Props {}
 
-    const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
-    };
+const SearchPage = (props: Props) => {
+  const [search, setSearch] = useState<string>("");
+  const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
+  const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
+  const [serverError, setServerError] = useState<string | null>(null);
 
-    const onPortfolioCreate = (e: SyntheticEvent) => {
-        e.preventDefault();
-        const target = e.target as HTMLFormElement;
-        const value = (target.elements[0] as HTMLInputElement).value;
-        
-        if (value && !portfolioValues.includes(value)) {
-            setPortfolioValues([...portfolioValues, value]);
-        }
-    };
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
 
-    const onPortfolioDelete = (e: SyntheticEvent) => {
-        e.preventDefault();
-        const target = e.target as HTMLFormElement;
-        const value = (target.elements[0] as HTMLInputElement).value;
-        
-        setPortfolioValues(portfolioValues.filter(v => v !== value));
-    };
+  const onPortfolioCreate = (e: any) => {
+    e.preventDefault();
+    //DO NOT DO THIS
+    // portfolioValues.push(event.target[0].value)
+    // setPortfolioValues(portfolioValues);
+    const exists = portfolioValues.find((value) => value === e.target[0].value);
+    if (exists) return;
+    const updatedPortfolio = [...portfolioValues, e.target[0].value];
+    setPortfolioValues(updatedPortfolio);
+  };
 
-    const onSearchSubmit = async (e: SyntheticEvent) => {
-        e.preventDefault();
-        try {
-            const result = await searchCompanies(search);
-            if (typeof result === 'string') {
-                setServerError(result);
-                setSearchResult([]);
-            } else if (Array.isArray(result)) {
-                setSearchResult(result);
-                setServerError("");
-            }
-        } catch (error) {
-            setServerError('An unexpected error occurred');
-            setSearchResult([]);
-        }
-    };
+  const onPortfolioDelete = (e: any) => {
+    e.preventDefault();
+    const removed = portfolioValues.filter((value) => {
+      return value !== e.target[0].value;
+    });
+    setPortfolioValues(removed);
+  };
 
-    return (
-        <div className="App">
-            <Hero />
-            <Search
-                onSearchSubmit={onSearchSubmit}
-                handleSearchChange={handleSearchChange}
-                search={search}
-            />
-            <ListPortfolio 
-                portfolioValues={portfolioValues} 
-                onPortfolioDelete={onPortfolioDelete} 
-            />
-            <CardList 
-                searchResults={searchResult} 
-                onPortfolioCreate={onPortfolioCreate} 
-            />
-            {serverError && <div className="error">{serverError}</div>}
-        </div>
-    );
+  const onSearchSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
+    const result = await searchCompanies(search);
+    //setServerError(result.data);
+    if (typeof result === "string") {
+      setServerError(result);
+    } else if (Array.isArray(result.data)) {
+      setSearchResult(result.data);
+    }
+  };
+  return (
+    <>
+      <Search
+        onSearchSubmit={onSearchSubmit}
+        search={search}
+        handleSearchChange={handleSearchChange}
+      />
+      <ListPortfolio
+        portfolioValues={portfolioValues}
+        onPortfolioDelete={onPortfolioDelete}
+      />
+      <CardList
+        searchResults={searchResult}
+        onPortfolioCreate={onPortfolioCreate}
+      />
+      {serverError && <div>Unable to connect to API</div>}
+    </>
+  );
 };
 
 export default SearchPage;
