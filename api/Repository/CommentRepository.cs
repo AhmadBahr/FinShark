@@ -24,14 +24,28 @@ namespace api.Repository
             return commentModel;
         }
 
+        public async Task<Comment?> DeleteAsync(int id)
+        {
+            var commentModel = await _context.Comments.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (commentModel == null)
+            {
+                return null;
+            }
+
+            _context.Comments.Remove(commentModel);
+            await _context.SaveChangesAsync();
+            return commentModel;
+        }
+
         public async Task<List<Comment>> GetAllAsync()
         {
-            return await _context.Comments.ToListAsync();
+            return await _context.Comments.Include(a => a.AppUser).ToListAsync();
         }
 
         public async Task<Comment?> GetByIdAsync(int id)
         {
-            return await _context.Comments.FindAsync(id);
+            return await _context.Comments.Include(a => a.AppUser).FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<Comment?> UpdateAsync(int id, Comment commentModel)
@@ -49,17 +63,6 @@ namespace api.Repository
             await _context.SaveChangesAsync();
 
             return existingComment;
-        }
-        public async Task<Comment?> DeleteAsync(int id)
-        {
-            var commentModel = await _context.Comments.FirstOrDefaultAsync(x => x.Id == id);
-            if (commentModel == null)
-            {
-                return null;
-            }
-            _context.Comments.Remove(commentModel);
-            await _context.SaveChangesAsync();
-            return commentModel;
         }
     }
 }
