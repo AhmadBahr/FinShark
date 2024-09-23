@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import logo from "./logo.png";
 import "./Navbar.css";
@@ -11,7 +10,6 @@ const Navbar = (props: Props) => {
   return (
     <nav className="relative container mx-auto p-6">
       <div className="flex items-center justify-between">
-        {/* Logo and Links */}
         <div className="flex items-center space-x-20">
           <Link to="/">
             <img src={logo} alt="Logo" />
@@ -23,7 +21,6 @@ const Navbar = (props: Props) => {
           </div>
         </div>
 
-        {/* Auth Links */}
         {isLoggedIn() ? (
           <div className="hidden lg:flex items-center space-x-6 text-back">
             <div className="hover:text-darkBlue">Welcome, {user?.userName}</div>
