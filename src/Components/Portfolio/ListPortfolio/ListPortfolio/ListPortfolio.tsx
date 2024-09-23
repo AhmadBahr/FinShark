@@ -1,32 +1,38 @@
-import { SyntheticEvent } from 'react';
-import CardPortfolio from '../../../CardPortfolio/CardPortfolio';
-import React from 'react';
+import React, { SyntheticEvent } from "react";
+import CardPortfolio from "../../CardPortfolio/CardPortfolio";
+import { PortfolioGet } from "../../../../Models/Portfolio";
 
 interface Props {
-    portfolioValues: string[];
-    onPortfolioDelete: (e: SyntheticEvent) => void
+  portfolioValues: PortfolioGet[];
+  onPortfolioDelete: (e: SyntheticEvent) => void;
 }
 
 const ListPortfolio = ({ portfolioValues, onPortfolioDelete }: Props) => {
-    return (
-        <div className="p-4 max-w-2xl mx-auto">
-            <h3 className="text-xl font-bold mb-4">My Portfolio</h3>
-            {portfolioValues.length === 0 ? (
-                <p className="text-gray-600">Your portfolio is empty.</p>
-            ) : (
-                <ul className="list-disc list-inside space-y-2">
-                    {portfolioValues.map((portfolioValue) => (
-                        <li key={portfolioValue}>
-                            <CardPortfolio
-                                portfolioValue={portfolioValue}
-                                onPortfolioDelete={onPortfolioDelete}
-                            />
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
+  return (
+    <section id="portfolio">
+      <h2 className="mb-3 mt-3 text-3xl font-semibold text-center md:text-4xl">
+        My Portfolio
+      </h2>
+      <div className="relative flex flex-col items-center max-w-5xl mx-auto space-y-10 px-10 mb-5 md:px-6 md:space-y-0 md:space-x-7 md:flex-row">
+        <>
+          {portfolioValues.length > 0 ? (
+            portfolioValues.map((portfolioValue) => {
+              return (
+                <CardPortfolio
+                  portfolioValue={portfolioValue}
+                  onPortfolioDelete={onPortfolioDelete}
+                />
+              );
+            })
+          ) : (
+            <h3 className="mb-3 mt-3 text-xl font-semibold text-center md:text-xl">
+              Your portfolio is empty.
+            </h3>
+          )}
+        </>
+      </div>
+    </section>
+  );
 };
 
 export default ListPortfolio;
