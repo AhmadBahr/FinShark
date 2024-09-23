@@ -11,25 +11,28 @@ const Navbar = (props: Props) => {
   return (
     <nav className="relative container mx-auto p-6">
       <div className="flex items-center justify-between">
+        {/* Logo and Links */}
         <div className="flex items-center space-x-20">
           <Link to="/">
-            <img src={logo} alt="" />
+            <img src={logo} alt="Logo" />
           </Link>
-          <div className="hidden font-bold lg:flex">
+          <div className="hidden font-bold lg:flex space-x-6">
             <Link to="/search" className="text-black hover:text-darkBlue">
               Search
             </Link>
           </div>
         </div>
+
+        {/* Auth Links */}
         {isLoggedIn() ? (
           <div className="hidden lg:flex items-center space-x-6 text-back">
             <div className="hover:text-darkBlue">Welcome, {user?.userName}</div>
-            <a
+            <button
               onClick={logout}
               className="px-8 py-3 font-bold rounded text-white bg-lightGreen hover:opacity-70"
             >
               Logout
-            </a>
+            </button>
           </div>
         ) : (
           <div className="hidden lg:flex items-center space-x-6 text-back">

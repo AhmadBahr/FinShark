@@ -13,4 +13,5 @@ const ProtectedRoute = ({ children }: Props) => {
         <Navigate to="/login" state={{ from: location }} replace />
     );
 };
+
 export default ProtectedRoute;
