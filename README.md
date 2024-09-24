@@ -7,7 +7,7 @@
 2. [**Technologies Used**](#technologies-used)
 3. [**Setup**](#setup)
 4. [**Features**](#features) 
-5. [**Code & Snippets**](#code-snippets)
+5. [**Code & Snippets**](#codesnippets)
 
 ## General Info
 FinShark is a web application designed to assist investors in locating relevant financial documents without the distractions of short-term data. Built with modern web technologies, FinShark provides an intuitive user interface and seamless functionality for efficient document retrieval.
