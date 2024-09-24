@@ -139,3 +139,36 @@ Smooth Scrolling:
 The React Anchor Link Smooth Scroll ensures a smooth scroll behavior when navigating between different sections of the page.
 
 # Code & Snippets: 
+## To add form validation using Yup, you can integrate it with React Hook Form like this:
+
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  name: yup.string().required("Name is required"),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  // Add other fields as necessary
+});
+
+function MyForm() {
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input name="name" ref={register} />
+      {errors.name && <p>{errors.name.message}</p>}
+      
+      <input name="email" ref={register} />
+      {errors.email && <p>{errors.email.message}</p>}
+      
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
