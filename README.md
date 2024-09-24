@@ -4,7 +4,7 @@
 
 ## Table of Contents
 1. [**General Info**](#general-info)
-2. [**Technologies Used**](#technology-used)
+2. [**Technologies Used**](#technologies-used)
 3. [**Setup**](#setup)
 4. [**Features**](#features) 
 5. [**Code & Snippets**](#codesnippets)
