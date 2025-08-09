@@ -1,174 +1,163 @@
-# FinShark
+# FinShark - Financial Analysis Platform
 
-<img width="1138" alt="homepage" src="https://github.com/user-attachments/assets/268b7ccf-45cb-4579-b145-3695ae1c4a5e">
+A comprehensive financial analysis and portfolio management platform built with React and ASP.NET Core.
 
-## Table of Contents
-1. [**General Info**](#general-info)
-2. [**Technologies Used**](#technologies-used)
-3. [**Setup**](#setup)
-4. [**Features**](#features) 
-5. [**Code & Snippets**](#codesnippets)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Entity Framework](https://img.shields.io/badge/Entity_Framework-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 
-## General Info
-FinShark is a web application designed to assist investors in locating relevant financial documents without the distractions of short-term data. Built with modern web technologies, FinShark provides an intuitive user interface and seamless functionality for efficient document retrieval.
+## ✨ Features
 
-## Technologies Used:
+- 📊 **Stock Analysis** - Comprehensive financial data and ratios
+- 💼 **Portfolio Management** - Track and manage your investment portfolios
+- 🔍 **Company Search** - Find and analyze companies with detailed profiles
+- 📈 **Financial Statements** - Income statements, balance sheets, and cash flow analysis
+- 💬 **Community Features** - Comment and discuss stocks with other investors
+- 🔐 **User Authentication** - Secure registration and login system
+- 📱 **Responsive Design** - Works seamlessly on all devices
+- 🎨 **Modern UI** - Built with Tailwind CSS and React Icons
 
-# ASP.NET Core
-ASP.NET Core is a cross-platform, high-performance framework for building modern, cloud-based web applications. It serves as the backbone of FinShark, handling server-side logic and API endpoints.
+## 🚀 Quick Start
 
-# SQL Server Management Studio (SSMS)
-SSMS is used for managing the SQL Server databases, allowing for efficient data querying and manipulation to support the application’s backend.
+### Prerequisites
+- Node.js (v16+)
+- .NET 7.0 SDK
+- SQL Server
 
-# Tailwind CSS
-Tailwind CSS is a utility-first CSS framework that allows for rapid design and styling of the application. It helps create a responsive and visually appealing user interface with minimal custom CSS.
+### Backend Setup
+```bash
+# Clone the repository
+git clone <repository-url>
+cd FinShark/api
 
-# Tailwind Prettier Plugin
-This plugin ensures consistent formatting by integrating Prettier with Tailwind CSS, enforcing best practices when writing utility classes.
+# Configure database connection in appsettings.json
+# Run the application
+dotnet run
+```
 
-# Tailwind Sorting
-Tailwind Sorting enforces consistent class ordering within the code, improving readability and maintainability.
+### Frontend Setup
+```bash
+# Navigate to frontend directory
+cd ../src
 
-#Swagger
-Swagger is utilized for API documentation and testing, allowing developers to visualize and interact with the API endpoints seamlessly.
-
-# Google Fonts
-Google Fonts are used to improve the aesthetics of the site with well-chosen typography that enhances readability and brand feel.
-
-# Reacticons
-Reacticons is a set of free MIT-licensed high-quality SVG icons used for UI elements in the project.
-
-# Framer Motion
-Framer Motion is a library for creating smooth animations and transitions. It is used throughout EVOGYM for an enhanced user experience.
-
-# FormSubmit
-FormSubmit allows the website to handle form submissions via email without requiring a backend, enabling a smooth user experience for contact forms.
-
-# React Anchor Link
-React Anchor Link Smooth Scroll is used to handle smooth scrolling behavior between sections, providing a seamless navigation experience.
-
-# React Hook Form
-React Hook Form is used for managing form state in React applications, providing a simple way to handle user inputs in forms, such as search fields or filters.
-
-# Yup
-Yup is a schema builder for runtime value parsing and validation.
-
-# Setup
-## Frontend Setup
-Clone the repository:
-git clone https://github.com/your-username/finshark.git
-
-Navigate to the project directory:
-cd finshark
-
-Install dependencies using Vite:
+# Install dependencies
 npm install
 
-Start the development server:
+# Start development server
 npm start
+```
 
-Open the website in your browser by navigating to the local server URL displayed (typically http://localhost:3000).
+Visit `http://localhost:3000` to see the application.
 
-## Backend Setup:
-Navigate to the backend project directory:
-cd api
+## 🛠️ Tech Stack
 
-Install necessary packages for the ASP.NET Core backend. If you are using Visual Studio, you can open the solution file. If you prefer the command line, run the following command to restore packages:
-Microsoft.AspNetCore.Mvc
-Microsoft.EntityFrameworkCore
-Microsoft.EntityFrameworkCore.SqlServer
-Microsoft.AspNetCore.Authentication.JwtBearer
-Swashbuckle.AspNetCore (for Swagger documentation)
+**Frontend:**
+- React 18 + TypeScript
+- Tailwind CSS for styling
+- React Router for navigation
+- Axios for API communication
+- React Hook Form + Yup for form handling
+- Recharts for data visualization
+- React Icons for UI icons
 
-Run the backend application:
-dotnet restore
+**Backend:**
+- ASP.NET Core 7.0
+- Entity Framework Core
+- SQL Server Database
+- JWT Authentication
+- Swagger/OpenAPI documentation
 
-NOTE: Insure the backend API is running on the specified port (default is usually http://localhost:5000).
+## 📁 Project Structure
 
-If you are using Visual Studio Code, install the following extensions from the Extensions Marketplace:
-NuGet Package Gallery: For managing NuGet packages.
-C#: Essential for C# development.
-C# Dev Kit: Provides enhanced C# support and productivity features
+```
+FinShark/
+├── src/                    # React frontend
+│   ├── Components/         # UI components
+│   │   ├── CompanyProfile/ # Company analysis components
+│   │   ├── Portfolio/      # Portfolio management
+│   │   ├── Search/         # Search functionality
+│   │   └── ...
+│   ├── Pages/             # Application pages
+│   ├── Services/          # API services
+│   ├── Context/           # React context
+│   └── Models/            # TypeScript interfaces
+└── api/                   # ASP.NET Core backend
+    ├── Controllers/       # API endpoints
+    ├── Models/           # Data models
+    ├── Services/         # Business logic
+    ├── Repository/       # Data access layer
+    └── Dtos/            # Data transfer objects
+```
 
-Install necessary ASP.NET Core packages: Ensure you have the following packages in your project:
+## 🔧 Configuration
 
-Microsoft.AspNetCore.Mvc
-Microsoft.AspNetCore.Mvc.NewtonsoftJson
-Microsoft.EntityFrameworkCore
-Microsoft.EntityFrameworkCore.SqlServer
-Microsoft.AspNetCore.Authentication.JwtBearer
-Swashbuckle.AspNetCore (for Swagger documentation)
-Microsoft.AspNetCore.OpenApi
-Microsoft.EntityFrameworkCore.Design
-Microsoft.EntityFrameworkCore.Tools
-
-You can install these packages using the command line:
-dotnet add package Microsoft.AspNetCore.Mvc
-dotnet add package Microsoft.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
-dotnet add package Swashbuckle.AspNetCore
-dotnet add package Microsoft.AspNetCore.OpenApi
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Microsoft.EntityFrameworkCore.Tools
-
-Run the backend application:
-dotnet watch run
-
-NOTE: Insure the backend API is running on the specified port (default is usually http://localhost:5000).
-
-## Features
-
-Responsive Design:
-The website adapts to different screen sizes, providing a seamless experience on both mobile and desktop devices.
-
-Smooth Animations:
-Using Framer Motion, the site features smooth animations that enhance user interactions, such as fade-ins, transitions, and hover effects.
-
-Document Retrieval: Users can easily search for and access relevant financial documents.
-
-Responsive Design: The application is optimized for various devices, providing a seamless experience on both mobile and desktop.
-
-Form Management: Integrated forms using React Hook Form facilitate user input without hassle.
-
-API Documentation: Swagger provides clear documentation and interactive testing capabilities for the API.
-
-Tailwind CSS Styling: The application employs Tailwind CSS for quick and consistent styling, enhancing the user interface.
-
-Smooth Scrolling:
-The React Anchor Link Smooth Scroll ensures a smooth scroll behavior when navigating between different sections of the page.
-
-# Code & Snippets: 
-## To add form validation using Yup, you can integrate it with React Hook Form like this:
-
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  // Add other fields as necessary
-});
-
-function MyForm() {
-  const { register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input name="name" ref={register} />
-      {errors.name && <p>{errors.name.message}</p>}
-      
-      <input name="email" ref={register} />
-      {errors.email && <p>{errors.email.message}</p>}
-      
-      <button type="submit">Submit</button>
-    </form>
-  );
+### Database Setup
+Update `api/appsettings.json`:
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=FinSharkDB;Trusted_Connection=true;TrustServerCertificate=true;"
+  }
 }
+```
+
+### API Configuration
+Update `src/api.tsx` with your backend URL if needed.
+
+## 📚 API Endpoints
+
+**Authentication:**
+- `POST /api/Account/register` - Register new user
+- `POST /api/Account/login` - User login
+
+**Stocks:**
+- `GET /api/Stock` - Get all stocks
+- `GET /api/Stock/{symbol}` - Get stock details
+- `POST /api/Stock` - Create new stock
+- `PUT /api/Stock/{id}` - Update stock
+- `DELETE /api/Stock/{id}` - Delete stock
+
+**Portfolios:**
+- `GET /api/Portfolio` - Get user portfolios
+- `POST /api/Portfolio` - Create portfolio
+- `DELETE /api/Portfolio/{id}` - Delete portfolio
+
+**Comments:**
+- `GET /api/Comment` - Get stock comments
+- `POST /api/Comment` - Create comment
+- `PUT /api/Comment/{id}` - Update comment
+- `DELETE /api/Comment/{id}` - Delete comment
+
+## 🚀 Deployment
+
+**Frontend:**
+```bash
+cd src
+npm run build
+```
+
+**Backend:**
+```bash
+cd api
+dotnet publish -c Release
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+**Built with ❤️ using React and ASP.NET Core**
